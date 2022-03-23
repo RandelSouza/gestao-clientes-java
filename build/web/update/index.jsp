@@ -42,6 +42,7 @@
                     </div>
 
                     <form id="update" name="update" action="/clientjava/PessoaController" method="POST">
+                        <input name="opcao" id="opcao" value="update" hidden>
                         <div class="card-body">
                             <input type="text" name="idpessoa" value="${cliente.pessoa.idpessoa}" hidden>
                             <input type="text" name="idcliente" value="${cliente.client.idcliente}" hidden>

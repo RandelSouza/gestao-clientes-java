@@ -19,7 +19,7 @@
         <input type="text" class="form-control" id="ddd2" name="ddd2" value="${cliente.pessoa.ddd2}">
     </div>
     <div class="form-group col-xl-3">
-        <label for="telefone2">Telefone</label>
+        <label for="telefone2">Telefone </label>
         <input type="text" class="form-control" id="telefone2" name="telefone2" value="${cliente.pessoa.telefone2}">
     </div>
 </div>

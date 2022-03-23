@@ -46,55 +46,83 @@ public class PessoaController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           Pessoa pessoa = new Pessoa();
-           pessoa.setIdpessoa(Integer.parseInt(request.getParameter("idpessoa")));
-           pessoa.setNomepessoa(request.getParameter("nomepessoa"));
-           pessoa.setSobrenomepessoa(request.getParameter("sobrenomepessoa"));
-           pessoa.setGenero(request.getParameter("genero"));
-           
-           String dataNascimento = request.getParameter("datanascimento");
-           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-           pessoa.setDatanascimento(dateFormat.parse(dataNascimento));
-           
-           pessoa.setIdentidade(request.getParameter("identidade"));
-           pessoa.setCpf(request.getParameter("cpf"));
-           pessoa.setTelefone(request.getParameter("telefone"));
-           pessoa.setDdd(Integer.parseInt(request.getParameter("ddd")));
-           pessoa.setTelefone2(request.getParameter("telefone2"));
-           pessoa.setDdd2(Integer.parseInt(request.getParameter("ddd2")));
-           System.out.println(pessoa);
-                      
-          /*========================================================================*/ 
-          
-           Cliente cliente = new Cliente();
-           cliente.setIdcliente(Integer.parseInt(request.getParameter("idcliente")));
-           cliente.setEmailcliente(request.getParameter("emailcliente"));
-           System.out.println(cliente);
-           
-          /*========================================================================*/ 
-          
-           Endereco endereco = new Endereco();
-           endereco.setIdendereco(Integer.parseInt(request.getParameter("idendereco")));
-           endereco.setTipologradouro(request.getParameter("tipologradouro"));
-           endereco.setLogradouro(request.getParameter("logradouro"));
-           endereco.setComplemento(request.getParameter("complemento"));
-           endereco.setCodigopostal(request.getParameter("cep"));
-           endereco.setBairro(request.getParameter("bairro"));
-           endereco.setCidade(request.getParameter("cidade"));
-           endereco.setUnidadefederacao(request.getParameter("unidadefederacao"));
-           System.out.println(endereco);
-           
-          /*========================================================================*/ 
-          
-           //PessoaEndereco pessoaEndereco = new PessoaEndereco();
-           //pessoaEndereco.setIdendereco(Integer.parseInt(request.getParameter("idpessoaendereco")));
-        
-          /*================PERSINTÊNCIA DOS DADOS (UPDATE) =====================================*/ 
-           PessoaDAO.updatePessoa(pessoa);
-           ClienteDAO.updateCliente(cliente);
-           EnderecoDAO.updateEndereco(endereco);
-           // Caso precise atualizar o idpessoaendereco chamar o DAO responsável
+
+            String option = request.getParameter("opcao");
+
+            switch (option) {
+                case "update":
+                    /*========================================================================*/
+                    //PessoaEndereco pessoaEndereco = new PessoaEndereco();
+                    //pessoaEndereco.setIdendereco(Integer.parseInt(request.getParameter("idpessoaendereco")));
+                    /*================PERSINTÊNCIA DOS DADOS (UPDATE) =====================================*/
+
+                    Pessoa pessoa = getPessoaFromForm(request, response);
+                    PessoaDAO.updatePessoa(pessoa);
+
+                    Cliente cliente = getClienteFromForm(request, response);
+                    ClienteDAO.updateCliente(cliente);
+                    
+                    Endereco endereco = getEnderecoFromForm(request, response);
+                    EnderecoDAO.updateEndereco(endereco);
+                    break;
+                    
+                case "delete":
+                    break;
+                    
+                case "insert":
+                    break;
+
+            }                      
         }
+    }
+
+    protected Pessoa getPessoaFromForm(HttpServletRequest request, HttpServletResponse response) throws ParseException {
+        Pessoa pessoa = new Pessoa();
+        pessoa.setIdpessoa(Integer.parseInt(request.getParameter("idpessoa")));
+        pessoa.setNomepessoa(request.getParameter("nomepessoa"));
+        pessoa.setSobrenomepessoa(request.getParameter("sobrenomepessoa"));
+        pessoa.setGenero(request.getParameter("genero"));
+
+        String dataNascimento = request.getParameter("datanascimento");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        pessoa.setDatanascimento(dateFormat.parse(dataNascimento));
+
+        pessoa.setIdentidade(request.getParameter("identidade"));
+        pessoa.setCpf(request.getParameter("cpf"));
+        pessoa.setTelefone(request.getParameter("telefone"));
+        pessoa.setDdd(Integer.parseInt(request.getParameter("ddd")));
+        pessoa.setTelefone2(request.getParameter("telefone2"));
+        pessoa.setDdd2(Integer.parseInt(request.getParameter("ddd2")));
+        System.out.println(pessoa);
+
+        return pessoa;
+
+    }
+
+    protected Cliente getClienteFromForm(HttpServletRequest request, HttpServletResponse response) throws ParseException {
+        Cliente cliente = new Cliente();
+        cliente.setIdcliente(Integer.parseInt(request.getParameter("idcliente")));
+        cliente.setEmailcliente(request.getParameter("emailcliente"));
+        System.out.println(cliente);
+
+        return cliente;
+
+    }
+
+    protected Endereco getEnderecoFromForm(HttpServletRequest request, HttpServletResponse response) throws ParseException {
+        Endereco endereco = new Endereco();
+        endereco.setIdendereco(Integer.parseInt(request.getParameter("idendereco")));
+        endereco.setTipologradouro(request.getParameter("tipologradouro"));
+        endereco.setLogradouro(request.getParameter("logradouro"));
+        endereco.setComplemento(request.getParameter("complemento"));
+        endereco.setCodigopostal(request.getParameter("cep"));
+        endereco.setBairro(request.getParameter("bairro"));
+        endereco.setCidade(request.getParameter("cidade"));
+        endereco.setUnidadefederacao(request.getParameter("unidadefederacao"));
+        System.out.println(endereco);
+
+        return endereco;
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
