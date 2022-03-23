@@ -1,0 +1,8 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<footer class="main-footer">
+      <!-- Default to the left -->
+      <strong style="text-align: center;">
+          <h3>Desenvolvido por Ludwig Gonzaga@2020</h3>
+          </strong>
+    </footer>

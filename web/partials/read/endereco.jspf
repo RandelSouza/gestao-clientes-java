@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="form-group col-xl-4">
+        <label for="logrdouro">Endereço</label>
+        <input type="text" class="form-control" id="logrdouro" name="logrdouro" value="${cliente.endereco.tipologradouro}${cliente.endereco.logradouro}" disabled>
+    </div>
+    <div class="form-group col-xl-4">
+        <label for="cep">Complemento</label>
+        <input type="text" class="form-control" id="complemento" name="complemento" value="${cliente.endereco.complemento}" disabled>
+    </div>
+    <div class="form-group col-xl-4">
+        <label for="postal-code">CEP</label>
+        <input type="text" class="form-control" id="codigopostal" name="codigopostal" value="${cliente.endereco.codigopostal}" disabled>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="form-group col-xl-4">
+        <label for="bairro">Bairro</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" value="${cliente.endereco.bairro}" disabled>
+    </div>
+    <div class="form-group col-xl-4">
+        <label for="ciade">Munícipio</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" value="${cliente.endereco.cidade}" disabled>
+    </div>
+    <div class="form-group col-xl-4">
+        <label for="unidadefederacao">Estado</label>
+        <input type="text" class="form-control" id="unidadefederacao" name="unidadefederacao" value="${cliente.endereco.unidadefederacao}" disabled>
+    </div>
+</div>
